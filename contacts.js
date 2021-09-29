@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
+const uniqid = require('uniqid');
 
 const contactsPath = path.join(__dirname, './db/contacts.json');
 
@@ -18,7 +19,7 @@ async function addContact(name, email, phone) {
     name,
     email,
     phone,
-    id: Math.floor(Math.random() * 2000),
+    id: uniqid(),
   };
   contacts.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contacts));
